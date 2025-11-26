@@ -35,7 +35,8 @@ namespace Tellurium
                 L"on.epicgames.com",
                 L"game-social.epicgames.com",
                 L"ak.epicgames.com",
-                L"epicgames.dev"
+                L"epicgames.dev",
+                L"superawesome.com"
             };
 
 
