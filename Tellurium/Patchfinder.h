@@ -2,6 +2,7 @@
 #include "pch.h"
 #include <array>
 #include <string_view>
+#include <intrin.h>
 
 namespace Tellurium
 {
