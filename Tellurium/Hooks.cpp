@@ -13,6 +13,9 @@ bool InitializeForModule(uint64_t Module, void* Hook, void** OG, bool EOS)
         processRequestStr = Tellurium::Patchfinder::FindStringRef(L"%p: request (easy handle:%p) has been added to threaded queue for processing");
 
     if (!processRequestStr)
+        processRequestStr = Tellurium::Patchfinder::FindStringRef("STAT_FCurlHttpRequest_ProcessRequest");
+
+    if (!processRequestStr)
         return false;
 
     uint64_t ProcessRequest = 0;
