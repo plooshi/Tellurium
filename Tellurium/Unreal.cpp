@@ -206,7 +206,7 @@ namespace Tellurium
         int setupMemLeak = 0;
         void FCurlHttpRequest::RedirectRequest(bool bEOS)
         {
-            if (!FCurlHttpRequest::SetURLIdx)
+            if (!FCurlHttpRequest::SetURLIdx && !bEOS)
                 InitializeURLIndex();
             else if (++setupMemLeak == 5 && FixMemLeak)
             {
