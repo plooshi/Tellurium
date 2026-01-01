@@ -215,8 +215,8 @@ namespace Tellurium
 
                 auto MemLeakPatch = pattern.Scan();
 
-                if (!MemLeakPatch)
-                    MemLeakPatch = pattern2.Scan();
+                //if (!MemLeakPatch)
+                //    MemLeakPatch = pattern2.Scan();
 
                 if (MemLeakPatch)
                 {
