@@ -131,6 +131,10 @@ void Tellurium::Hooks::Init()
         SetConsoleTitleA("Tellurium (https://github.com/plooshi/Tellurium)");
     }
 
+    constexpr static auto ReallocSig = Tellurium::Patchfinder::Pattern<"48 89 5C 24 08 48 89 74 24 10 57 48 83 EC ? 48 8B F1 41 8B D8 48 8B 0D ? ? ? ?">();
+    while (!Tellurium::Unreal::FMemory__Realloc)
+        Tellurium::Unreal::FMemory__Realloc = ReallocSig.Scan();
+
     if (UseBackendParam)
     {
         Tellurium::Unreal::FString cmd = GetCommandLineW();
@@ -140,10 +144,6 @@ void Tellurium::Hooks::Init()
         else
             Tellurium::Unreal::backend = Backend;
     }
-
-    constexpr static auto ReallocSig = Tellurium::Patchfinder::Pattern<"48 89 5C 24 08 48 89 74 24 10 57 48 83 EC ? 48 8B F1 41 8B D8 48 8B 0D ? ? ? ?">();
-    while (!Tellurium::Unreal::FMemory__Realloc)
-        Tellurium::Unreal::FMemory__Realloc = ReallocSig.Scan();
 
     while (!InitializeForModule(Tellurium::PE::ImageBase, ProcessRequestHook, (void**)&Tellurium::Unreal::FCurlHttpRequest::ProcessRequestOG, false));
 
