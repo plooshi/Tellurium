@@ -211,12 +211,12 @@ namespace Tellurium
             else if (++setupMemLeak == 5 && FixMemLeak)
             {
                 constexpr static auto pattern = Tellurium::Patchfinder::Pattern<"48 89 5C 24 ?? 57 48 83 EC ?? 48 8B 01 4C 8B C2 48 8D 54 24 ? 48 8B D9 FF 50 30">();
-                constexpr static auto pattern2 = Tellurium::Patchfinder::Pattern<"48 8B 01 4C 8D 41 08 48 FF 60 20">();
+                constexpr static auto pattern2 = Tellurium::Patchfinder::Pattern<"4C 8B DC 55 57 41 56 49 8D AB ? ? ? ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 48 8B 01 41 B6">();
 
                 auto MemLeakPatch = pattern.Scan();
 
-                //if (!MemLeakPatch)
-                //    MemLeakPatch = pattern2.Scan();
+                if (!MemLeakPatch)
+                    MemLeakPatch = pattern2.Scan();
 
                 if (MemLeakPatch)
                 {
