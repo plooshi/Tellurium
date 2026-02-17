@@ -2,6 +2,7 @@
 #include "Hooks.h"
 #include "Patchfinder.h"
 #include "Options.h"
+#include <emmintrin.h>
 
 bool InitializeForModule(uint64_t Module, void* Hook, void** OG, bool EOS)
 {
